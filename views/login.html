@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Login</title>
+  </head>
+  <body>
+
+
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+              <h3>Sign In</h3>
+              <p class="mb-4">Welcome to Our Blog</p>
+            </div>
+            <form id="form" >
+              <div class="form-group first">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email">
+
+              </div>
+              <div class="form-group last mb-4">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password">
+
+              </div>
+
+              <div class="d-flex mb-5 align-items-center">
+                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span><br />
+                <span class="ml-auto"><a href="signup.html" class="forgot-pass">Don't have account?</a></span>
+              </div>
+              <input type="submit" id="login" value="Log In" class="btn btn-block btn-primary">
+
+            </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script>
+      document.querySelector('form').addEventListener('submit', async (e) => {
+          let user_login = {
+              email: "",
+              password: ""
+          };
+          event.preventDefault();
+          user_login.email = document.getElementById("email").value;
+          user_login.password = document.getElementById("password").value;
+          try {
+              const res = await fetch('/login', {
+                  method: 'POST',
+                  body: JSON.stringify(user_login),
+                  headers: { 'Content-Type': 'application/json' }
+              });
+              console.log("my response after login is ", res);
+              if(res['status']!=200)
+              {
+                alert("Error in the the login please check your input and try again");
+              }
+              else {
+                {
+
+                  window.location.replace("map.html");
+                }
+              }
+              
+          }
+          catch (err) {
+              console.log(err);
+          }
+      })
+  </script>
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
